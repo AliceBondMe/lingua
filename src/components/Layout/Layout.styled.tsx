@@ -1,19 +1,11 @@
 import styled from "styled-components";
 
-export const Wrap = styled.div`
+export const Main = styled.main`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 100px);
+  align-items: center;
+  min-height: calc(100vh - 68px);
   margin: 0;
   overflow-x: hidden;
-`;
-
-export const Main = styled.main`
-  flex: 1;
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 12px;
+  padding: 20px;
 `;

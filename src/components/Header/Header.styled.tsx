@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
-  top: 20px;
+  top: 0;
   left: 0;
+  margin-top: 20px;
   position: sticky;
   z-index: 1100;
   display: flex;
@@ -28,6 +29,7 @@ export const HeaderStyled = styled.header`
 
 export const Navigation = styled.nav`
   display: flex;
+  align-items: center;
   gap: 28px;
 `;
 
