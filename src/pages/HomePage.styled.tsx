@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const Wrap = styled.div`
+export const Wrap = styled.section`
   display: flex;
   gap: 24px;
+  margin-bottom: 24px;
 `;
 
 export const TextBlock = styled.div`
-  width: 720px;
+  max-width: 720px;
+  height: 530px;
   padding: 98px 64px;
   border-radius: 30px;
   background: var(--bg-secondary);
@@ -64,7 +66,7 @@ export const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  width: 568px;
+  max-width: 568px;
   height: 530px;
   overflow: hidden;
   object-fit: cover;
@@ -74,4 +76,35 @@ export const ImageContainer = styled.div`
     width: 100%;
     height: auto;
   }
+`;
+
+export const StatList = styled.ul`
+  display: flex;
+  gap: 100px;
+  justify-content: space-between;
+  padding: 40px 100px;
+  width: 1312px;
+  height: 116px;
+  border-radius: 30px;
+  border: 2px dashed var(--accent-main);
+`;
+
+export const StatItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const NumericData = styled.p`
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.56px;
+`;
+
+export const Text = styled.span`
+  width: 96px;
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.29;
 `;

@@ -2,6 +2,10 @@ import {
   GetStartedBtn,
   ImageContainer,
   MainHeader,
+  NumericData,
+  StatItem,
+  StatList,
+  Text,
   TextBlock,
   Wrap,
 } from "./HomePage.styled";
@@ -30,6 +34,24 @@ const HomePage = () => {
           <img src={happyStudent} alt="happy student with laptop" />
         </ImageContainer>
       </Wrap>
+      <StatList>
+        <StatItem>
+          <NumericData>32,000 +</NumericData>
+          <Text>Experienced tutors</Text>
+        </StatItem>
+        <StatItem>
+          <NumericData>300,000 +</NumericData>
+          <Text>5-star tutor reviews</Text>
+        </StatItem>
+        <StatItem>
+          <NumericData>120 +</NumericData>
+          <Text>Subjects taught</Text>
+        </StatItem>
+        <StatItem>
+          <NumericData>200 +</NumericData>
+          <Text>Tutor nationalities</Text>
+        </StatItem>
+      </StatList>
     </>
   );
 };

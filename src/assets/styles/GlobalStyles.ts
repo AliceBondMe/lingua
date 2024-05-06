@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
       --text-main: #121417;
       --text-secondary: #8A8A89;
       --text-contrast: #ffffff;
+      --text-light: rgba(18, 20, 23, 0.7);
       --accent-main: #E0A39A;
       --accent-secondary: #F2C0BD;
       --accent-sat: #bb5954;
@@ -70,7 +71,7 @@ export const GlobalStyle = createGlobalStyle`
     } 
 
     ::-webkit-scrollbar-thumb {
-      background-color: var(--scroll);
+      background-color: var(--accent-main);
       border-radius: 8px;
     }
 
@@ -82,10 +83,10 @@ export const GlobalStyle = createGlobalStyle`
 export const fadeInScale = keyframes`
   from {
     opacity: 0;
-    transform: translateY(-100vh) scale(0.1)
+    transform:  scale(0.01) rotate(360deg);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1)
+    transform:  scale(1);
   }
 `;

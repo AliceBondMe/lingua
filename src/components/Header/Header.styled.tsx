@@ -2,16 +2,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
-  top: 0;
-  left: 0;
-  margin-top: 20px;
-  position: sticky;
-  z-index: 1100;
   display: flex;
+  width: 1184px;
+  margin: 20px auto 0 auto;
   justify-content: space-between;
   align-items: center;
   height: 48px;
-  padding: 12px 128px;
+  padding: 12px 0;
   color: var(--text-main);
 
   & a {
