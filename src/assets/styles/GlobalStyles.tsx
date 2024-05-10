@@ -8,13 +8,13 @@ export const GlobalStyle = createGlobalStyle`
       --text-secondary: #8A8A89;
       --text-contrast: #ffffff;
       --text-light: rgba(18, 20, 23, 0.7);
-      --accent-main: #E0A39A;
-      --accent-secondary: #F2C0BD;
-      --accent-sat: #bb5954;
+      --text-error: #d75c7d;
+      --accent-main: #83c0c7;
+      --accent-secondary: #9dd0d6;
+      --accent-sat: #4c888f;
       --accent-contrast: #121417;
       --backdrop: rgba(17, 18, 19, 0.40);
       --transition-main: 300ms ease-in-out;
-        
     }
 
 

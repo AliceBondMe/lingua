@@ -13,24 +13,19 @@ import {
 } from "./Forms.styled";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/slices/auth/authOperations";
 import { AppDispatch } from "../../redux/store";
+import { loginUser } from "../../redux/slices/auth/authOperations";
 
 interface FormProps {
   closeModal: () => void;
 }
 
-export interface UserData {
-  name: string;
+export interface UserDataLogin {
   email: string;
   password: string;
 }
 
 const validationSchema = yup.object().shape({
-  name: yup
-    .string()
-    .min(3, "Name must contain 3 or more characters")
-    .required("A name is required"),
   email: yup
     .string()
     .email("Please enter valid email")
@@ -41,7 +36,7 @@ const validationSchema = yup.object().shape({
     .required("A password is required"),
 });
 
-export const Registration: FC<FormProps> = ({ closeModal }) => {
+export const Login: FC<FormProps> = ({ closeModal }) => {
   const dispatch: AppDispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -49,31 +44,27 @@ export const Registration: FC<FormProps> = ({ closeModal }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserData>({
+  } = useForm<UserDataLogin>({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<UserData> = async ({
-    name,
+  const onSubmit: SubmitHandler<UserDataLogin> = async ({
     email,
     password,
-  }: UserData) => {
-    console.log(name, email, password);
-    dispatch(registerUser({ name, email, password }));
+  }: UserDataLogin) => {
+    dispatch(loginUser({ email, password }));
 
     closeModal();
   };
 
   return (
     <>
-      <Header>Registration</Header>
+      <Header>Log In</Header>
       <Text>
-        Thank you for your interest in our platform! In order to register, we
-        need some information. Please provide us with the following information
+        Welcome back! Please enter your credentials to access your account and
+        continue your search for an teacher.
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input {...register("name")} placeholder="Name" />
-
         <Input type="email" {...register("email")} placeholder="Email" />
 
         <PasswordContainer>
@@ -92,9 +83,8 @@ export const Registration: FC<FormProps> = ({ closeModal }) => {
           </ShowPasswordBtn>
         </PasswordContainer>
 
-        <FormBtn type="submit">Sign Up</FormBtn>
+        <FormBtn type="submit">Log In</FormBtn>
 
-        <ErrorMessage>{errors.name?.message}</ErrorMessage>
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
         <ErrorMessage>{errors.password?.message}</ErrorMessage>
       </form>

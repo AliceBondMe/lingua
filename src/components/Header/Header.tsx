@@ -1,20 +1,29 @@
 import { NavLink } from "react-router-dom";
 import {
-  BtnsGroup,
+  AuthGroup,
   HeaderStyled,
-  LoginBtn,
+  LoginOutBtn,
   Logo,
   Navigation,
   RegistrationBtn,
 } from "./Header.styled";
 import { Icon } from "../Icon/Icon";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useShowModal } from "../../hooks/useShowModal";
 import { Modal } from "../Modal/Modal";
 import { Registration } from "../Forms/Registration";
+import { Login } from "../Forms/Login";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserName } from "../../redux/selectors";
+import { AppDispatch } from "../../redux/store";
+import { logoutUser } from "../../redux/slices/auth/authOperations";
+import { LuLogOut } from "react-icons/lu";
 
 export const Header: FC = () => {
   const { isShowModal, openModal, closeModal } = useShowModal();
+  const [isLogin, setIsLogin] = useState(true);
+  const userName = useSelector(selectUserName);
+  const dispatch: AppDispatch = useDispatch();
 
   return (
     <>
@@ -28,19 +37,44 @@ export const Header: FC = () => {
           <NavLink to="teachers">Teachers</NavLink>
           <NavLink to="favorites">Favorites</NavLink>
         </Navigation>
-        <BtnsGroup>
-          <LoginBtn type="button" onClick={openModal}>
-            <Icon name="icon-login" width={20} height={20} />
-            Log in
-          </LoginBtn>
-          <RegistrationBtn type="button" onClick={openModal}>
-            Registration
-          </RegistrationBtn>
-        </BtnsGroup>
+        {userName ? (
+          <AuthGroup>
+            <p>Welcome, {userName}!</p>
+            <LoginOutBtn type="button" onClick={() => dispatch(logoutUser())}>
+              <LuLogOut size={20} />
+              Log out
+            </LoginOutBtn>
+          </AuthGroup>
+        ) : (
+          <AuthGroup>
+            <LoginOutBtn type="button" onClick={openModal}>
+              <Icon name="icon-login" width={20} height={20} />
+              Log in
+            </LoginOutBtn>
+            <RegistrationBtn
+              type="button"
+              onClick={() => {
+                setIsLogin(false);
+                openModal();
+              }}
+            >
+              Registration
+            </RegistrationBtn>
+          </AuthGroup>
+        )}
       </HeaderStyled>
-      {isShowModal && (
-        <Modal closeModal={closeModal} children={<Registration />} />
-      )}
+      {isShowModal &&
+        (isLogin ? (
+          <Modal
+            closeModal={closeModal}
+            children={<Login closeModal={closeModal} />}
+          />
+        ) : (
+          <Modal
+            closeModal={closeModal}
+            children={<Registration closeModal={closeModal} />}
+          />
+        ))}
     </>
   );
 };

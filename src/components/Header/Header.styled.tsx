@@ -42,13 +42,13 @@ export const Logo = styled(Link)`
   }
 `;
 
-export const BtnsGroup = styled.div`
+export const AuthGroup = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
 `;
 
-export const LoginBtn = styled.button`
+export const LoginOutBtn = styled.button`
   display: inline-flex;
   gap: 8px;
   align-items: center;

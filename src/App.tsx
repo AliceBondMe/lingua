@@ -1,7 +1,12 @@
 import { Route, Routes } from "react-router";
 import { GlobalStyle } from "./assets/styles/GlobalStyles";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import Layout from "./components/Layout/Layout";
+import { useDispatch } from "react-redux";
+import { refreshUser } from "./redux/slices/auth/authOperations";
+import { AppDispatch } from "./redux/store";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TeachersPage"));
@@ -9,6 +14,17 @@ const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const id = user.uid;
+        dispatch(refreshUser(id));
+      }
+    });
+  }, [dispatch]);
+
   return (
     <>
       <Routes>

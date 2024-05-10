@@ -4,11 +4,15 @@ import App from "./App.tsx";
 import "./index.css";
 import "modern-normalize";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/lingua">
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter basename="/lingua">
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

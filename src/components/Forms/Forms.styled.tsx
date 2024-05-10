@@ -19,16 +19,27 @@ export const Input = styled.input`
   border: 1px solid rgba(18, 20, 23, 0.1);
   padding: 16px 18px;
   margin-bottom: 18px;
+  transition: border-color var(--transition-main);
 
   &::placeholder {
     color: var(--text-main);
     font-family: Roboto;
     line-height: 1.37;
+    transition: color var(--transition-main);
+  }
+
+  &:focus {
+    border-color: var(--accent-main);
+
+    &::placeholder {
+      color: var(--accent-main);
+    }
   }
 `;
 
 export const PasswordContainer = styled.div`
   position: relative;
+  margin-bottom: 22px;
 `;
 
 export const ShowPasswordBtn = styled.button`
@@ -41,4 +52,25 @@ export const ShowPasswordBtn = styled.button`
   &:hover {
     color: var(--accent-main);
   }
+`;
+
+export const FormBtn = styled.button`
+  width: 438px;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background-color: var(--accent-main);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.55;
+  transition: background-color var(--transition-main);
+
+  &:hover {
+    background-color: var(--accent-secondary);
+  }
+`;
+
+export const ErrorMessage = styled.p`
+  color: var(--text-error);
+  text-align: center;
 `;

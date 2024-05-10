@@ -35,7 +35,7 @@ export const Modal: FC<ModalProps> = ({ closeModal, children }) => {
       <ModalContainer>
         <CloseBtn
           type="button"
-          area-label="close modal window"
+          aria-label="close modal window"
           onClick={closeModal}
         >
           <IoCloseOutline size={32} />
