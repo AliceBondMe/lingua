@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getDatabase, ref } from "firebase/database";
 // import { getFirestore } from "firebase/firestore";
 
-const FIREBASE_API_KEY = (import.meta as any).env.VITE_REACT_FIREBASE_API_KEY;
+const FIREBASE_API_KEY = process.env.VITE_REACT_FIREBASE_API_KEY;
 
 export const firebaseApp = initializeApp({
   apiKey: FIREBASE_API_KEY,
