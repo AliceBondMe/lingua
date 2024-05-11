@@ -14,12 +14,13 @@ import { Modal } from "../Modal/Modal";
 import { Registration } from "../Forms/Registration";
 import { Login } from "../Forms/Login";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserName } from "../../redux/selectors";
+import { selectIsLoggedIn, selectUserName } from "../../redux/selectors";
 import { AppDispatch } from "../../redux/store";
 import { logoutUser } from "../../redux/slices/auth/authOperations";
 import { LuLogOut } from "react-icons/lu";
 
 export const Header: FC = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const { isShowModal, openModal, closeModal } = useShowModal();
   const [isLogin, setIsLogin] = useState(true);
   const userName = useSelector(selectUserName);
@@ -35,7 +36,7 @@ export const Header: FC = () => {
         <Navigation>
           <NavLink to="/">Home</NavLink>
           <NavLink to="teachers">Teachers</NavLink>
-          <NavLink to="favorites">Favorites</NavLink>
+          {isLoggedIn && <NavLink to="favorites">Favorites</NavLink>}
         </Navigation>
         {userName ? (
           <AuthGroup>
@@ -47,7 +48,13 @@ export const Header: FC = () => {
           </AuthGroup>
         ) : (
           <AuthGroup>
-            <LoginOutBtn type="button" onClick={openModal}>
+            <LoginOutBtn
+              type="button"
+              onClick={() => {
+                setIsLogin(true);
+                openModal();
+              }}
+            >
               <Icon name="icon-login" width={20} height={20} />
               Log in
             </LoginOutBtn>
@@ -63,6 +70,7 @@ export const Header: FC = () => {
           </AuthGroup>
         )}
       </HeaderStyled>
+
       {isShowModal &&
         (isLogin ? (
           <Modal

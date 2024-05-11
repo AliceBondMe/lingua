@@ -5,6 +5,10 @@ interface ReviewerProps {
   $firstLetter: string;
 }
 
+interface FavBtnProps {
+  $isFavorite: boolean;
+}
+
 export const Card = styled.div`
   display: flex;
   width: 1184px;
@@ -105,15 +109,17 @@ export const DataBlock = styled.div`
   }
 `;
 
-export const FavButton = styled.button`
+export const FavButton = styled.button<FavBtnProps>`
   margin-left: auto;
   background-color: transparent;
-  fill: transparent;
+  fill: ${({ $isFavorite }) =>
+    $isFavorite ? "var(--accent-main)" : "transparent"};
   stroke: var(--accent-main);
   transition: fill var(--transition-main);
 
   &:hover {
-    fill: var(--accent-main);
+    fill: ${({ $isFavorite }) =>
+      $isFavorite ? "var(--border-light)" : "var(--accent-main)"};
   }
 `;
 

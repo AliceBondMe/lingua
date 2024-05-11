@@ -1,5 +1,5 @@
 import {
-  GetStartedBtn,
+  GetStartedLink,
   ImageContainer,
   MainHeader,
   NumericData,
@@ -28,7 +28,7 @@ const HomePage = () => {
             Elevate your language proficiency to new heights by connecting with
             highly qualified and experienced tutors.
           </p>
-          <GetStartedBtn type="button">Get started</GetStartedBtn>
+          <GetStartedLink to="teachers">Get started</GetStartedLink>
         </TextBlock>
         <ImageContainer>
           <img src={happyStudent} alt="happy student with laptop" />

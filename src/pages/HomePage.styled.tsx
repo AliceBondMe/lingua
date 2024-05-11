@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrap = styled.section`
@@ -46,7 +47,7 @@ export const MainHeader = styled.h1`
   }
 `;
 
-export const GetStartedBtn = styled.button`
+export const GetStartedLink = styled(Link)`
   width: 267px;
   padding: 16px;
   border-radius: 12px;

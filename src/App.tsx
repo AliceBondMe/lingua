@@ -7,6 +7,7 @@ import { refreshUser } from "./redux/slices/auth/authOperations";
 import { AppDispatch } from "./redux/store";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import { PrivateRoute } from "./routes/PrivateRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TeachersPage"));
@@ -31,7 +32,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route
+            path="/favorites"
+            element={<PrivateRoute redirectTo="/" component={FavoritesPage} />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

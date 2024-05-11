@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { TeachersData } from "../../redux/slices/teachers/teachersSlice";
 import {
   Card,
@@ -22,13 +22,49 @@ import { nanoid } from "@reduxjs/toolkit";
 import { ReadMore } from "./ReadMore";
 import { IoIosArrowUp } from "react-icons/io";
 import { BookTrialBtn } from "../BookTrial/BookTrialBtn";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addFavorite,
+  removeFavorite,
+} from "../../redux/slices/auth/authOperations";
+import { AppDispatch } from "../../redux/store";
+import {
+  selectFavorites,
+  selectIsLoggedIn,
+  selectUserId,
+} from "../../redux/selectors";
 
 export interface TeacherCardProps {
   teacher: TeachersData;
 }
 
 export const TeacherCard: FC<TeacherCardProps> = ({ teacher }) => {
+  const dispatch: AppDispatch = useDispatch();
+  const uid = useSelector(selectUserId);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const favorites = useSelector(selectFavorites);
   const [isReadMore, setIsReadMore] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const isInFavorites = favorites?.find(
+      (fav: TeachersData) => fav.avatar_url === teacher.avatar_url
+    );
+
+    isInFavorites ? setIsFavorite(true) : setIsFavorite(false);
+  }, [favorites]);
+
+  const handleFavorite = () => {
+    if (!isFavorite) {
+      isLoggedIn && dispatch(addFavorite({ item: teacher, id: uid }));
+    } else {
+      isLoggedIn &&
+        dispatch(removeFavorite({ avatarUrl: teacher.avatar_url, id: uid }));
+    }
+    isLoggedIn
+      ? setIsFavorite((prev) => !prev)
+      : alert("Please Log in to add favorites");
+  };
 
   const {
     avatar_url,
@@ -68,7 +104,13 @@ export const TeacherCard: FC<TeacherCardProps> = ({ teacher }) => {
               Price / 1 hour: <span>{price_per_hour}$</span>
             </p>
           </DataBlock>
-          <FavButton type="button" aria-label="add to favorites">
+
+          <FavButton
+            type="button"
+            aria-label="add to favorites"
+            onClick={handleFavorite}
+            $isFavorite={isFavorite}
+          >
             <Icon name="icon-heart" width={26} height={26} />
           </FavButton>
         </FirstRowWrap>
@@ -117,10 +159,12 @@ export const TeacherCard: FC<TeacherCardProps> = ({ teacher }) => {
           ))}
         </LevelsList>
 
-        <BookTrialBtn
-          teacherName={`${name} ${surname}`}
-          teacherPhoto={avatar_url}
-        />
+        {isReadMore && (
+          <BookTrialBtn
+            teacherName={`${name} ${surname}`}
+            teacherPhoto={avatar_url}
+          />
+        )}
       </ContentBlock>
     </Card>
   );

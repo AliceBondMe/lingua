@@ -16,6 +16,6 @@ export const firebaseApp = initializeApp({
 });
 
 export const auth = getAuth(firebaseApp);
-const db = getDatabase(firebaseApp);
+export const db = getDatabase(firebaseApp);
 export const usersRef = ref(db, "users");
 export const teachersRef = ref(db, "teachers");
