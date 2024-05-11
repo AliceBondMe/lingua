@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fadeInScale } from "../../assets/styles/GlobalStyles";
+import { fadeInScaleAndRotate } from "../../assets/styles/GlobalStyles";
 
 export const ModalContainer = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   border-radius: 30px;
   padding: 64px;
   background-color: var(--bg-main);
-  animation: ${fadeInScale} 1s ease-in-out;
+  animation: ${fadeInScaleAndRotate} 1s ease-in-out;
 `;
 
 export const CloseBtn = styled.button`

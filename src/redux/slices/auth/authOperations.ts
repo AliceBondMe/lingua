@@ -24,14 +24,16 @@ export const registerUser = createAsyncThunk(
       const user = userCredential.user;
 
       // adding user to users collection
-      const registeredUser = {
-        name,
-        email,
-        uid: user.uid,
-      };
-      await push(usersRef, registeredUser);
+      if (user) {
+        const registeredUser = {
+          name,
+          email,
+          uid: user.uid,
+        };
+        await push(usersRef, registeredUser);
 
-      return registeredUser;
+        return registeredUser;
+      }
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
     }

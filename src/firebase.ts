@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref } from "firebase/database";
-// import { getFirestore } from "firebase/firestore";
 
 const FIREBASE_API_KEY = import.meta.env.VITE_REACT_FIREBASE_API_KEY;
 
@@ -17,6 +16,6 @@ export const firebaseApp = initializeApp({
 });
 
 export const auth = getAuth(firebaseApp);
-// export const db = getFirestore(firebaseApp);
 const db = getDatabase(firebaseApp);
 export const usersRef = ref(db, "users");
+export const teachersRef = ref(db, "teachers");

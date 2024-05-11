@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
       --accent-secondary: #9dd0d6;
       --accent-sat: #4c888f;
       --accent-contrast: #121417;
+      --price: #38CD3E;
+      --border-light: rgba(18, 20, 23, 0.2);
       --backdrop: rgba(17, 18, 19, 0.40);
       --transition-main: 300ms ease-in-out;
     }
@@ -26,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 1.25;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background: var(--bg-main);
+        background-color: var(--bg-main);
         color: var(--text-main);
     }
 
@@ -80,7 +82,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const fadeInScale = keyframes`
+export const fadeInScaleAndRotate = keyframes`
   from {
     opacity: 0;
     transform:  scale(0.01) rotate(360deg);
@@ -88,5 +90,16 @@ export const fadeInScale = keyframes`
   to {
     opacity: 1;
     transform:  scale(1);
+  }
+`;
+
+export const fadeInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform:  translateX(-100vw);
+  }
+  to {
+    opacity: 1;
+    transform:  translateX(0);
   }
 `;

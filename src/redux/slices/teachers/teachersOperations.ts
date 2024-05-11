@@ -1,11 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { teachersRef } from "../../../firebase";
+import {
+  get,
+  limitToFirst,
+  orderByKey,
+  query,
+  startAt,
+} from "firebase/database";
+import { TeachersData } from "./teachersSlice";
 
 export const fetchTeachers = createAsyncThunk(
   "teachers/fetchTeachers",
-  async (_, thunkAPI) => {
+  async (startIndex: string, thunkAPI) => {
     try {
-      //...
-      const teachers = [1, 2, 3];
+      const teachersQuery = query(
+        teachersRef,
+        orderByKey(),
+        startAt(startIndex),
+        limitToFirst(4)
+      );
+
+      const teachers: TeachersData[] = [];
+
+      const snapshot = await get(teachersQuery);
+
+      snapshot.forEach((snap) => {
+        teachers.push(snap.val());
+      });
 
       return teachers;
     } catch (error: any) {

@@ -7,6 +7,7 @@ import {
   FormBtn,
   Header,
   Input,
+  MajorErrorMessage,
   PasswordContainer,
   ShowPasswordBtn,
   Text,
@@ -15,6 +16,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { loginUser } from "../../redux/slices/auth/authOperations";
+import { useAutoClearAuthError } from "../../hooks/useAutoClearAuthError";
 
 interface FormProps {
   closeModal: () => void;
@@ -39,10 +41,12 @@ const validationSchema = yup.object().shape({
 export const Login: FC<FormProps> = ({ closeModal }) => {
   const dispatch: AppDispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const authError = useAutoClearAuthError();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserDataLogin>({
     resolver: yupResolver(validationSchema),
@@ -52,9 +56,14 @@ export const Login: FC<FormProps> = ({ closeModal }) => {
     email,
     password,
   }: UserDataLogin) => {
-    dispatch(loginUser({ email, password }));
-
-    closeModal();
+    dispatch(loginUser({ email, password })).then((action) => {
+      if (action.type === "auth/login/rejected") {
+        reset();
+        console.log(authError);
+      } else {
+        closeModal();
+      }
+    });
   };
 
   return (
@@ -88,6 +97,12 @@ export const Login: FC<FormProps> = ({ closeModal }) => {
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
         <ErrorMessage>{errors.password?.message}</ErrorMessage>
       </form>
+      {authError && (
+        <MajorErrorMessage>
+          Something went wrong with your sign up. <br /> Please try again or
+          register if you are not signed up
+        </MajorErrorMessage>
+      )}
     </>
   );
 };

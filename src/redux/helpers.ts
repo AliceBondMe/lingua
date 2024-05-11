@@ -1,22 +1,21 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AuthState } from "./slices/auth/authSlice";
-import { TeachersState } from "./slices/teachers/teachersSlice";
 import { equalTo, get, orderByChild, query } from "firebase/database";
 import { usersRef } from "../firebase";
 
 export const handleUserIn = (state: AuthState, action: PayloadAction<any>) => {
   state.uid = action.payload.uid;
   state.name = action.payload.name;
-  state.error = null;
+  state.authError = null;
 
   state.isLoggedIn = true;
 };
 
-export const handleRejected = (
-  state: AuthState | TeachersState,
+export const handleRejectedAuth = (
+  state: AuthState,
   action: PayloadAction<any>
 ) => {
-  state.error = action.payload;
+  state.authError = action.payload;
 };
 
 export const findUser = async (id: string) => {

@@ -74,3 +74,78 @@ export const ErrorMessage = styled.p`
   color: var(--text-error);
   text-align: center;
 `;
+
+export const MajorErrorMessage = styled.p`
+  color: var(--text-error);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
+export const TeacherBlock = styled.div`
+  display: flex;
+  gap: 14px;
+  margin-bottom: 40px;
+`;
+
+export const TeacherPhotoContainer = styled.div`
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+
+  &img {
+    width: 100%;
+    height: auto;
+  }
+`;
+
+export const TextBlock = styled.div`
+  & p:first-child {
+    margin-bottom: 4px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+  }
+  & p:last-child {
+    font-weight: 500;
+    line-height: 1.5;
+  }
+`;
+
+export const RadioBlock = styled.div`
+  margin-bottom: 40px;
+`;
+
+export const RadioOption = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.37;
+  margin-bottom: 18px;
+
+  & input {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+    border-radius: 12px;
+    border: 2px solid var(--border-light);
+    appearance: none;
+
+    &:checked {
+      background: radial-gradient(var(--accent-main) 40%, var(--bg-main) 50%);
+      border-color: var(--accent-main);
+    }
+  }
+`;
+
+export const RadioText = styled.p`
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.33;
+`;

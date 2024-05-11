@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
-export const Main = styled.main`
+interface MainProps {
+  $isHome: boolean;
+}
+
+export const Main = styled.main<MainProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 68px);
   margin: 0;
   overflow-x: hidden;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
+  background-color: ${({ $isHome }) =>
+    $isHome ? "var(--bg-main)" : "var(--bg-secondary)"};
 `;

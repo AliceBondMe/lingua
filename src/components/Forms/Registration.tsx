@@ -7,6 +7,7 @@ import {
   FormBtn,
   Header,
   Input,
+  MajorErrorMessage,
   PasswordContainer,
   ShowPasswordBtn,
   Text,
@@ -15,6 +16,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/slices/auth/authOperations";
 import { AppDispatch } from "../../redux/store";
+import { useAutoClearAuthError } from "../../hooks/useAutoClearAuthError";
 
 interface FormProps {
   closeModal: () => void;
@@ -44,10 +46,12 @@ const validationSchema = yup.object().shape({
 export const Registration: FC<FormProps> = ({ closeModal }) => {
   const dispatch: AppDispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const authError = useAutoClearAuthError();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserData>({
     resolver: yupResolver(validationSchema),
@@ -58,10 +62,14 @@ export const Registration: FC<FormProps> = ({ closeModal }) => {
     email,
     password,
   }: UserData) => {
-    console.log(name, email, password);
-    dispatch(registerUser({ name, email, password }));
-
-    closeModal();
+    dispatch(registerUser({ name, email, password })).then((action) => {
+      if (action.type === "auth/register/rejected") {
+        reset();
+        console.log(authError);
+      } else {
+        closeModal();
+      }
+    });
   };
 
   return (
@@ -98,6 +106,13 @@ export const Registration: FC<FormProps> = ({ closeModal }) => {
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
         <ErrorMessage>{errors.password?.message}</ErrorMessage>
       </form>
+
+      {authError && (
+        <MajorErrorMessage>
+          Something went wrong with your sign up. <br /> Please try again or
+          login if you are already registered
+        </MajorErrorMessage>
+      )}
     </>
   );
 };
