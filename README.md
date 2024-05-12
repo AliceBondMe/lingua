@@ -16,7 +16,7 @@ Lingua is a platform that provides the database of foreign languages teachers.
 
 ## Authentification
 
-Authenticated users have more privilegues. They can save their favorite teachers.
+Authenticated users have more privileges. They can save their favorite teachers.
 Signing up and in is realised using Firebase Auth.
 
 ![Lingua Registration preview](./assets/registration.JPG)
@@ -39,6 +39,9 @@ detailed information, and book trial lessons.
 
 - Add teachers to favorites for quick access (for signed in users)
   ![Lingua Favorites preview](./assets/favorites.JPG)
+
+- Responsive design. Marked up adaptively for different types of devices
+  ![Lingua Favorites preview](./assets/mobile.JPG)
 
 ## Contact
 
