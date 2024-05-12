@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
   display: flex;
-  width: 1184px;
-  margin: 20px auto;
+  width: 95vw;
+  margin: 12px auto;
   justify-content: space-between;
   align-items: center;
   height: 48px;
@@ -22,12 +22,25 @@ export const HeaderStyled = styled.header`
   & a:hover {
     color: var(--accent-sat);
   }
+
+  @media screen and (min-width: 1440px) {
+    width: 1184px;
+    margin: 20px auto;
+  }
 `;
 
 export const Navigation = styled.nav`
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    gap: 28px;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -36,16 +49,39 @@ export const Logo = styled(Link)`
   align-items: center;
 
   & p {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.2;
+
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+    }
   }
 `;
 
 export const AuthGroup = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
+
+  & p {
+    font-size: 14px;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 64px;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+
+    & p {
+      font-size: 16px;
+      max-width: max-content;
+      white-space: nowrap;
+      overflow: visible;
+    }
+  }
 `;
 
 export const LoginOutBtn = styled.button`
@@ -70,15 +106,27 @@ export const LoginOutBtn = styled.button`
 `;
 
 export const RegistrationBtn = styled.button`
-  width: 166px;
-  padding: 12px;
+  width: 88px;
+  padding: 6px;
   border-radius: 12px;
   background-color: var(--accent-contrast);
   color: var(--text-contrast);
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   transition: background-color var(--transition-main);
 
   &:hover {
     background-color: var(--accent-sat);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 140px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 166px;
   }
 `;

@@ -30,6 +30,7 @@ import {
 import { AppDispatch } from "../../redux/store";
 import {
   selectFavorites,
+  selectFilteredLevel,
   selectIsLoggedIn,
   selectUserId,
 } from "../../redux/selectors";
@@ -43,6 +44,7 @@ export const TeacherCard: FC<TeacherCardProps> = ({ teacher }) => {
   const uid = useSelector(selectUserId);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(selectFavorites);
+  const filteredLevel = useSelector(selectFilteredLevel);
   const [isReadMore, setIsReadMore] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -153,7 +155,7 @@ export const TeacherCard: FC<TeacherCardProps> = ({ teacher }) => {
 
         <LevelsList>
           {levels.map((level) => (
-            <LevelsItem key={nanoid()}>
+            <LevelsItem key={nanoid()} $isFiltered={level === filteredLevel}>
               <span>{level}</span>
             </LevelsItem>
           ))}

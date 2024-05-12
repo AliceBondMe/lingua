@@ -5,11 +5,22 @@ export const ModalContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 566px;
+  max-height: 95vh;
+  overflow-y: auto;
+  width: 95%;
   border-radius: 30px;
-  padding: 64px;
+  padding: 32px;
   background-color: var(--bg-main);
   animation: ${fadeInScaleAndRotate} 1s ease-in-out;
+
+  &::-webkit-scrollbar-track {
+    margin: 18px 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 566px;
+    padding: 64px;
+  }
 `;
 
 export const CloseBtn = styled.button`

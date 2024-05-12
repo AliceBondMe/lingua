@@ -82,6 +82,17 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
+export const fadeInScale = keyframes`
+  from {
+    opacity: 0;
+    transform:  scale(0.01);
+  }
+  to {
+    opacity: 1;
+    transform:  scale(1);
+  }
+`;
+
 export const fadeInScaleAndRotate = keyframes`
   from {
     opacity: 0;

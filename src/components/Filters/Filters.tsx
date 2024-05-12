@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectSortedPrices,
   selectSortedLanguages,
+  selectFiltered,
 } from "../../redux/selectors";
 import { levelsOptions } from "../../constants/levelsOptions";
 import {
@@ -19,6 +20,7 @@ export const Filters: FC = () => {
   const dispatch = useDispatch();
   const languages = useSelector(selectSortedLanguages);
   const prices = useSelector(selectSortedPrices);
+  const isFiltered = useSelector(selectFiltered);
 
   const [language, setLanguage] = useState("choose");
   const [level, setLevel] = useState("choose");
@@ -67,6 +69,7 @@ export const Filters: FC = () => {
 
       <ResetButton
         type="button"
+        disabled={!isFiltered}
         aria-label="reset filters"
         onClick={resetFilters}
       >

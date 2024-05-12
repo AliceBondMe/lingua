@@ -20,6 +20,7 @@ import { TeacherCard } from "../components/TeacherCard/TeacherCard";
 import { nanoid } from "@reduxjs/toolkit";
 import { List, LoadMoreBtn, NoTeachersMessage } from "./TeachersPage.styled";
 import { Filters } from "../components/Filters/Filters";
+import { ScrollUpButton } from "../components/ScrollUpButton/ScrollUpButton";
 
 const TeachersPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -69,7 +70,7 @@ const TeachersPage = () => {
             ))}
           </List>
 
-          {page < totalPages - 1 && (
+          {!isFiltered && page < totalPages - 1 && (
             <LoadMoreBtn
               type="button"
               onClick={() => setPage((prev) => prev + 1)}
@@ -79,6 +80,7 @@ const TeachersPage = () => {
           )}
         </>
       )}
+      <ScrollUpButton />
     </>
   );
 };
