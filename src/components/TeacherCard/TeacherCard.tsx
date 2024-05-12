@@ -165,6 +165,7 @@ export const TeacherCard: FC<TeacherCardProps> = ({ teacher }) => {
           <BookTrialBtn
             teacherName={`${name} ${surname}`}
             teacherPhoto={avatar_url}
+            bookLanguage={languages[0]}
           />
         )}
       </ContentBlock>

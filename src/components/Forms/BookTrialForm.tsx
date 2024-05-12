@@ -20,6 +20,7 @@ interface FormProps {
   closeModal: () => void;
   teacherName: string;
   teacherPhoto: string;
+  bookLanguage: string;
 }
 
 export interface UserBookingData {
@@ -50,6 +51,7 @@ export const BookTrialForm: FC<FormProps> = ({
   closeModal,
   teacherName,
   teacherPhoto,
+  bookLanguage,
 }) => {
   const {
     register,
@@ -88,7 +90,9 @@ export const BookTrialForm: FC<FormProps> = ({
       </TeacherBlock>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <RadioText>What is your main reason for learning English?</RadioText>
+        <RadioText>
+          What is your main reason for learning {bookLanguage}?
+        </RadioText>
 
         <RadioBlock>
           <RadioOption>

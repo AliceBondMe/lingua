@@ -7,11 +7,13 @@ import { BookTrialForm } from "../Forms/BookTrialForm";
 interface BookTrialBtnProps {
   teacherName: string;
   teacherPhoto: string;
+  bookLanguage: string;
 }
 
 export const BookTrialBtn: FC<BookTrialBtnProps> = ({
   teacherName,
   teacherPhoto,
+  bookLanguage,
 }) => {
   const { isShowModal, openModal, closeModal } = useShowModal();
 
@@ -28,6 +30,7 @@ export const BookTrialBtn: FC<BookTrialBtnProps> = ({
               closeModal={closeModal}
               teacherName={teacherName}
               teacherPhoto={teacherPhoto}
+              bookLanguage={bookLanguage}
             />
           }
         />
