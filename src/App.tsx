@@ -10,10 +10,10 @@ import { auth } from "./firebase";
 import { PrivateRoute } from "./routes/PrivateRoute";
 
 const HomePage: LazyExoticComponent<ComponentType<any>> = lazy(
-  () => import("./pages/HomePage")
+  () => import("./pages/HomePage/HomePage")
 );
 const TeachersPage: LazyExoticComponent<ComponentType<any>> = lazy(
-  () => import("./pages/TeachersPage")
+  () => import("./pages/TeachersPage/TeachersPage")
 );
 const FavoritesPage: LazyExoticComponent<ComponentType<any>> = lazy(
   () => import("./pages/FavoritesPage")

@@ -4,8 +4,8 @@ import {
   fetchFilteredTeachers,
   fetchOptions,
   fetchTeachers,
-} from "../redux/slices/teachers/teachersOperations";
-import { AppDispatch } from "../redux/store";
+} from "../../redux/slices/teachers/teachersOperations";
+import { AppDispatch } from "../../redux/store";
 import {
   selectTeachers,
   selectFiltered,
@@ -14,13 +14,13 @@ import {
   selectFilteredPrice,
   selectTotalPages,
   selectIsLoading,
-} from "../redux/selectors";
-import { TeachersData } from "../redux/slices/teachers/teachersSlice";
-import { TeacherCard } from "../components/TeacherCard/TeacherCard";
+} from "../../redux/selectors";
+import { TeachersData } from "../../redux/slices/teachers/teachersSlice";
+import { TeacherCard } from "../../components/TeacherCard/TeacherCard";
 import { nanoid } from "@reduxjs/toolkit";
 import { List, LoadMoreBtn, NoTeachersMessage } from "./TeachersPage.styled";
-import { Filters } from "../components/Filters/Filters";
-import { ScrollUpButton } from "../components/ScrollUpButton/ScrollUpButton";
+import { Filters } from "../../components/Filters/Filters";
+import { ScrollUpButton } from "../../components/ScrollUpButton/ScrollUpButton";
 
 const TeachersPage = () => {
   const dispatch: AppDispatch = useDispatch();

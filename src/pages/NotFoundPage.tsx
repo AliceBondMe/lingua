@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import pageNotFound from "../assets/images/page-not-found.png";
 import { useEffect } from "react";
-import { NotFoundPageMessage } from "./TeachersPage.styled";
+import { NotFoundPageMessage } from "./TeachersPage/TeachersPage.styled";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();

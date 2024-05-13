@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fadeInScale } from "../assets/styles/GlobalStyles";
+import { fadeInScale } from "../../assets/styles/GlobalStyles";
 
 export const List = styled.ul`
   display: flex;

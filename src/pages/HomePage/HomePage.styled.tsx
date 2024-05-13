@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { fadeInScale } from "../assets/styles/GlobalStyles";
+import { fadeInScale } from "../../assets/styles/GlobalStyles";
 
 export const Wrap = styled.section`
   display: flex;
