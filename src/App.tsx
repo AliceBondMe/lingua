@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import { GlobalStyle } from "./assets/styles/GlobalStyles";
-import { lazy, useEffect } from "react";
+import { ComponentType, LazyExoticComponent, lazy, useEffect } from "react";
 import Layout from "./components/Layout/Layout";
 import { useDispatch } from "react-redux";
 import { refreshUser } from "./redux/slices/auth/authOperations";
@@ -9,10 +9,18 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { PrivateRoute } from "./routes/PrivateRoute";
 
-const HomePage = lazy(() => import("./pages/HomePage"));
-const TeachersPage = lazy(() => import("./pages/TeachersPage"));
-const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const HomePage: LazyExoticComponent<ComponentType<any>> = lazy(
+  () => import("./pages/HomePage")
+);
+const TeachersPage: LazyExoticComponent<ComponentType<any>> = lazy(
+  () => import("./pages/TeachersPage")
+);
+const FavoritesPage: LazyExoticComponent<ComponentType<any>> = lazy(
+  () => import("./pages/FavoritesPage")
+);
+const NotFoundPage: LazyExoticComponent<ComponentType<any>> = lazy(
+  () => import("./pages/NotFoundPage")
+);
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -45,4 +53,3 @@ function App() {
 }
 
 export default App;
-
