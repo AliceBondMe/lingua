@@ -9,7 +9,7 @@ import {
   TextBlock,
   Wrap,
 } from "./HomePage.styled";
-import happyStudent from "../assets/images/cartoon-study-laptop-1x.png";
+import happyStudent from "../../assets/images/cartoon-study-laptop-1x.png";
 
 const HomePage = () => {
   return (
